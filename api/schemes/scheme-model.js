@@ -1,3 +1,5 @@
+const db = require('../../data/db-config');
+
 function find() { // EXERCISE A
   /*
     1A- Study the SQL query below running it in SQLite Studio against `data/schemes.db3`.
@@ -15,6 +17,11 @@ function find() { // EXERCISE A
     2A- When you have a grasp on the query go ahead and build it in Knex.
     Return from this function the resulting dataset.
   */
+ return db('schemes as s').select('s.*')
+ .count('st.step_id as number_of_steps')
+ .join('steps as st', 's.scheme_id', 'st.scheme_id')
+ .groupBy('s.scheme_id')
+ .orderBy('s.scheme_id', 'asc')
 }
 
 function findById(scheme_id) { // EXERCISE B
@@ -83,6 +90,32 @@ function findById(scheme_id) { // EXERCISE B
         "steps": []
       }
   */
+
+      const table = db('sc.scheme_name').select('st.*')
+      .leftJoin('steps as st', 'sc.scheme_id', 'st.scheme_id')
+      .where('sc.scheme_id', scheme_id)
+      .orderBy('st.step_number', 'asc')
+
+      // creating an object to store data structure from above
+      const obj = {
+        scheme_id: table[0].scheme_id,
+        scheme_name: table[0].scheme_name,
+        steps: []
+      }
+
+      //interating through table
+      table.forEach(data => {
+        if (data.step_id) {
+          // searching through steps table for step_id, pushing if exists
+          obj.steps.push({
+            step_id: data.step_id,
+            step_number: data.step_number,
+            instructions: data.instructions
+          })
+        }
+      })
+      
+      return obj
 }
 
 function findSteps(scheme_id) { // EXERCISE C

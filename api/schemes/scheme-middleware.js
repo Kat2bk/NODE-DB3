@@ -6,6 +6,8 @@
     "message": "scheme with scheme_id <actual id> not found"
   }
 */
+const Data = require('./scheme-model');
+
 const checkSchemeId = (req, res, next) => {
 
 }
