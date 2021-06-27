@@ -1,6 +1,9 @@
 -- Multi-Table Query Practice
 
 -- Display the ProductName and CategoryName for all products in the database. Shows 77 records.
+SELECT P.ProductName, C.CategoryName 
+    FROM Products as P
+JOIN Categories as C ON P.CategoryId = C.Id
 
 -- Display the order Id and shipper CompanyName for all orders placed before August 9 2012. Shows 429 records.
 
