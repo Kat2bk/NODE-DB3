@@ -37,21 +37,21 @@ There are two possible ways to submit your project. Your instructor should have 
 
 ### Middleware Functions
 
-Write middleware functions in `api/schemes/scheme-middleware.js` following the instructions inside that file:
+<!-- Write middleware functions in `api/schemes/scheme-middleware.js` following the instructions inside that file:
 
 - [ ] `checkSchemeId`
 - [ ] `validateScheme`
-- [ ] `validateStep`
+- [ ] `validateStep` -->
 
 ### Database Functions
 
-Write db access functions in `api/schemes/scheme-model.js` following the instructions inside that file:
+<!-- Write db access functions in `api/schemes/scheme-model.js` following the instructions inside that file:
 
 - [ ] `find`
 - [ ] `findById`
 - [ ] `findSteps`
 - [ ] `add`
-- [ ] `addStep`
+- [ ] `addStep` -->
 
 #### Schemes Schema
 
