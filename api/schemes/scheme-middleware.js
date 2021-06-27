@@ -9,13 +9,13 @@
 const Data = require('./scheme-model');
 
 const checkSchemeId = (req, res, next) => {
-  Data.findById(req.params.id)
-  .then(scheme => {
-    if (scheme) {
-      req.scheme = scheme
+  Data.findById(req.params.scheme_id)
+  .then(scheme_id => {
+    if (scheme_id) {
+      req.scheme_id = scheme_id
       next()
     } else {
-      res.status(404).json({message: `scheme with scheme_id ${req.params.id} not found`})
+      res.status(404).json({message: `scheme with scheme_id ${req.params.scheme_id} not found`})
     }
   })
   .catch(error => {
@@ -51,13 +51,11 @@ const validateScheme = (req, res, next) => {
 const validateStep = (req, res, next) => {
   const {instructions, step_number} = req.body;
 
-  if (!instructions || instructions === "" || typeof instructions !== 'string') {
-    if (typeof step_number !== 'number' || step_number < 1) {
+  if (!instructions || instructions === "" || typeof instructions !== 'string' || typeof step_number !== 'number' || step_number < 1) {
      return res.status(400).json({message: "invalid step"})
     } else {
       next()
     }
-  }
 }
 
 module.exports = {
